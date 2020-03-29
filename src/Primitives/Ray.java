@@ -1,6 +1,7 @@
 package Primitives;
 
 import java.util.Objects;
+import Primitives.Point3D;
 
 public class Ray {
     Point3D _point;
@@ -16,6 +17,7 @@ public class Ray {
         _vec=_vec.normalize();
         this._vec = _vec;
     }
+
 
 
     /**Copy Constructor
@@ -62,5 +64,9 @@ public class Ray {
                 "_point=" + _point +
                 ", _vec=" + _vec +
                 '}';
+    }
+
+    public Point3D getPoint(double t) {
+        {return Util.isZero(t)?_point:new Point3D(_point).add(_vec.scale(t));}
     }
 }

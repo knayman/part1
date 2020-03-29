@@ -99,7 +99,7 @@ public static Point3D ZERO=new Point3D(new Coordinate(0),new Coordinate(0),new C
         Point3D point3D = (Point3D) o;
         return _x.equals( point3D._x) &&
                 _y.equals( point3D._y) &&
-                _x.equals( point3D._z);
+                _z.equals( point3D._z);
     }
 
     /**toString

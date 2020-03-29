@@ -1,6 +1,6 @@
 package Geometries;
 
-abstract public class RadialGeometry {
+abstract public class RadialGeometry implements Geometry {
    private double radius;
 
     /**Constructor
@@ -27,4 +27,6 @@ abstract public class RadialGeometry {
                 "radius=" + radius +
                 '}';
     }
+
+
 }

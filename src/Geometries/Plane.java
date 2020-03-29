@@ -24,7 +24,14 @@ public class Plane {
     public  Plane(Point3D _p1,Point3D _p2,Point3D _p3)
     {
         this._p=_p1;
-        this._normal=null;
+        Vector tmp1=_p1.subtract(_p2);
+        Vector u=new Vector(tmp1);
+        Vector tmp2=_p1.subtract(_p3);
+        Vector V=new Vector(tmp2);
+        Vector n=u.crossProduct(V);
+        n.normalize();
+       n.scale(-1);
+        this._normal=n;
     }
 
     /**Returns the normal at a point
@@ -33,7 +40,7 @@ public class Plane {
      */
 public Vector getNormal(Point3D _p)
 {
-    return null;
+    return _normal.scale(-1);
 }
 
     /**Get function

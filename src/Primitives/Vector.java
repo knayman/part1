@@ -71,9 +71,8 @@ public class Vector {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Vector vector = (Vector) o;
-        return vector.equals(vector._p);
+        return _p.equals(vector._p);
     }
-
     /**toString
      * @return string
      */
