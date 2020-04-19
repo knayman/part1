@@ -67,6 +67,6 @@ public class Ray {
     }
 
     public Point3D getPoint(double t) {
-        {return Util.isZero(t)?_point:new Point3D(_point).add(_vec.scale(t));}
+        return Util.isZero(t ) ? _point : _point.add(_vec.scale(t));
     }
 }

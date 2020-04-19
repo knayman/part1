@@ -1,4 +1,4 @@
-package Geometries;
+package geometries;
 
 abstract public class RadialGeometry implements Geometry {
    private double radius;

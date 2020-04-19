@@ -7,8 +7,10 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import Geometries.*;
+import geometries.*;
 import Primitives.*;
+
+import java.util.List;
 
 /**
  * Testing Polygons
@@ -19,7 +21,7 @@ public class PolygonTest {
 
     /**
      * Test method for polygon
-     * 
+     *
      */
     @Test
     public void testConstructor() {
@@ -80,7 +82,7 @@ public class PolygonTest {
     }
 
     /**
-     * Test method for {@link geometries.Polygon#getNormal(primitives.Point3D)}.
+     * Test method for polygan m=normanl
      */
     @Test
     public void testGetNormal() {
@@ -89,7 +91,46 @@ public class PolygonTest {
         Polygon pl = new Polygon(new Point3D(0, 0, 1), new Point3D(1, 0, 0), new Point3D(0, 1, 0),
                 new Point3D(-1, 1, 1));
         double sqrt3 = Math.sqrt(1d / 3);
-        assertEquals("Bad normal to trinagle", new Vector(sqrt3, sqrt3, sqrt3), pl.getNormal(new Point3D(0, 0, 1)));
+        assertEquals("Wrong normal to triangle", new Vector(sqrt3, sqrt3, sqrt3), pl.getNormal(new Point3D(0, 0, 1)));
     }
 
+    /**
+     *Test method for polygon intersection points
+     */
+    @Test
+    public void findIntersections()
+    {
+        Polygon poly=new Polygon(new Point3D(1,1,0),new Point3D(1,4,0), new Point3D(4,1,0));
+        // ============ Equivalence Partitions Tests ==============
+        // TC01 Intersection point inside polygon
+     Ray r1=new Ray(new Point3D(2,2,-1),new Vector(0,0,1));
+     List<Point3D> result1=poly.findIntersections(r1);
+     assertEquals("Wrong number of intersection points",1,result1.size());
+
+        // TC02 Intersection point outside polygon against edge
+        Ray r2=new Ray(new Point3D(4,3,-1),new Vector(0,0,1));
+        List<Point3D> result2=poly.findIntersections(r2);
+        assertEquals("Wrong number of intersection points",0,result2.size());
+
+        // TC03 Intersection point outside polygon against vertex
+        Ray r3=new Ray(new Point3D(0.5,0.5,-1),new Vector(0,0,1));
+        List<Point3D> result3=poly.findIntersections(r3);
+        assertEquals("Wrong number of intersection points",0,result3.size());
+
+        // ============ Boundary Value Tests ==============
+        // TC04 Intersection point on the edge of the polygon
+        Ray r4=new Ray(new Point3D(2,1,-1),new Vector(0,0,1));
+        List<Point3D> result4=poly.findIntersections(r4);
+        assertEquals("Wrong number of intersection points",0,result4.size());
+
+        // TC05 Intersection point in vertex
+        Ray r5=new Ray(new Point3D(1,1,-1),new Vector(0,0,1));
+        List<Point3D> result5=poly.findIntersections(r5);
+        assertEquals("Wrong number of intersection points",0,result5.size());
+
+        // TC06 Intersection point on edges continuation
+        Ray r6=new Ray(new Point3D(1,8,0),new Vector(0,0,1));
+        List<Point3D> result6=poly.findIntersections(r6);
+        assertEquals("Wrong number of intersection points",0,result6.size());
+    }
 }

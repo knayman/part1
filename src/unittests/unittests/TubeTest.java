@@ -1,10 +1,9 @@
 package unittests;
 
-import Geometries.Cylinder;
 import Primitives.Point3D;
 import Primitives.Ray;
 import Primitives.Vector;
-import Geometries.Tube;
+import geometries.Tube;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

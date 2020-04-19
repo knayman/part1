@@ -1,6 +1,6 @@
 package unittests;
 
-import Geometries.Cylinder;
+import geometries.Cylinder;
 import org.junit.Test;
 import Primitives.*;
 
